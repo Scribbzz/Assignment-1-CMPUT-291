@@ -1,0 +1,109 @@
+CREATE TABLE A (
+    a_id INTEGER PRIMARY KEY,   -- Unique identifier for entity A
+    a1 INTEGER,
+    a2 INTEGER,
+    a3 INTEGER
+);
+
+CREATE TABLE B (
+    b_id INTEGER PRIMARY KEY    -- Unique identifier for entity B
+);
+
+CREATE TABLE Z_Relationship (
+    d_id INTEGER,        -- References the D entity
+    z1 INTEGER,          -- Attribute specific to Z
+    PRIMARY KEY (d_id),  -- Assuming Z is a 1:N relationship
+    FOREIGN KEY (d_id) REFERENCES D(d_id)
+);
+
+CREATE TABLE C (
+    c_id INTEGER PRIMARY KEY    -- Unique identifier for entity C
+);
+
+CREATE TABLE Y_Relationship (
+    d_id INTEGER,            -- References D
+    c_id INTEGER,            -- References C
+    PRIMARY KEY (d_id, c_id), -- Composite key ensures uniqueness
+    FOREIGN KEY (d_id) REFERENCES D(d_id),
+    FOREIGN KEY (c_id) REFERENCES C(c_id)
+);
+
+CREATE TABLE IS_Relationship (
+    a_id INTEGER,
+    b_id INTEGER,
+    c_id INTEGER,
+    PRIMARY KEY (a_id, b_id, c_id), 
+    FOREIGN KEY (a_id) REFERENCES A(a_id),
+    FOREIGN KEY (b_id) REFERENCES B(b_id),
+    FOREIGN KEY (c_id) REFERENCES C(c_id)
+);
+
+CREATE TABLE D (
+    d_id INTEGER PRIMARY KEY,
+    d1 INTEGER,
+    d2 INTEGER,
+    d3 INTEGER
+);
+
+CREATE TABLE H (
+    h_id INTEGER PRIMARY KEY,
+    h1 INTEGER
+);
+
+CREATE TABLE V_Relationship (
+    d_id INTEGER,
+    h_id INTEGER,
+    PRIMARY KEY (d_id, h_id),
+    FOREIGN KEY (d_id) REFERENCES D(d_id),
+    FOREIGN KEY (h_id) REFERENCES H(h_id)
+);
+
+CREATE TABLE X_Relationship (
+    d_id INTEGER,
+    x1 INTEGER,
+    PRIMARY KEY (d_id),
+    FOREIGN KEY (d_id) REFERENCES D(d_id)
+);
+
+CREATE TABLE E (
+    e_id INTEGER PRIMARY KEY,
+    e1 INTEGER,
+    e2 INTEGER
+);
+
+CREATE TABLE W_Relationship (
+    d_id INTEGER,
+    e_id INTEGER,
+    w1 INTEGER,
+    PRIMARY KEY (d_id, e_id),
+    FOREIGN KEY (d_id) REFERENCES D(d_id),
+    FOREIGN KEY (e_id) REFERENCES E(e_id)
+);
+
+CREATE TABLE F (
+    f_id INTEGER PRIMARY KEY,
+    f1 INTEGER,
+    f2 INTEGER
+);
+
+CREATE TABLE U_Relationship (
+    e_id INTEGER,
+    f_id INTEGER,
+    PRIMARY KEY (e_id, f_id),
+    FOREIGN KEY (e_id) REFERENCES E(e_id),
+    FOREIGN KEY (f_id) REFERENCES F(f_id)
+);
+
+CREATE TABLE G (
+    g_id INTEGER PRIMARY KEY,
+    g1 INTEGER
+);
+
+CREATE TABLE T_Relationship (
+    g_id INTEGER,
+    f_id INTEGER,
+    PRIMARY KEY (g_id, f_id),
+    FOREIGN KEY (g_id) REFERENCES G(g_id),
+    FOREIGN KEY (f_id) REFERENCES F(f_id)
+);
+
