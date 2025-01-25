@@ -1,6 +1,6 @@
 Name - CCID
 
-Ahaan Mandan - mandan\n
+Ahaan Mandan - mandan
 Abdul Basit - basit1
 Akhil Vishnubhotla - vishnubh
 Taufeeq Raji - taufeeqr
